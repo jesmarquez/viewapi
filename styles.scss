@@ -1,0 +1,9 @@
+@charset "UTF-8";
+$violet: #433fa8;
+$middle-gray: #7f7f7f;
+$soft-gray: #ededed;
+$theme-colors: (
+  primary: $violet
+);
+
+@import "./node_modules/bootstrap/scss/bootstrap.scss";

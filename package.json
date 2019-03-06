@@ -1,0 +1,25 @@
+{
+  "name": "viewapi",
+  "version": "0.1.0",
+  "description": "View API",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [
+    "js"
+  ],
+  "author": "Jesus Marquez",
+  "license": "ISC",
+  "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "bootstrap": "^4.3.1",
+    "dotenv": "^6.2.0",
+    "next": "^8.0.3",
+    "node-sass": "^4.11.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  }
+}
