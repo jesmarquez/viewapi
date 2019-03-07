@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import "../styles.scss"
 import fetch from 'isomorphic-fetch'
 
@@ -32,6 +33,15 @@ class View extends React.Component {
           </div>)
 
       return (
+        <div>
+        <Head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js"/>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        </Head>
         <div className="container">
             <div className="row align-items-start">
                 <div className="col">
@@ -62,37 +72,48 @@ class View extends React.Component {
 
             <div className="row align-items-center mt-2" >
                 <div className="col">
-                <div className="list-group">
-                    <a href="#" className="list-group-item list-group-item-action flex-column align-items-start active">
-                        <div className="d-flex w-100 justify-content-between">
-                        <h5 className="mb-1">Jesus Marquez</h5>
-                        <small>3 days ago</small>
-                        </div>
-                        <p className="mb-1">IBM inc</p>
-                        <small>Culminado</small>
-                    </a>
-                    <a href="#" className="list-group-item list-group-item-action flex-column align-items-start">
-                        <div className="d-flex w-100 justify-content-between">
-                        <h5 className="mb-1">List group item heading</h5>
-                        <small className="text-muted">3 days ago</small>
-                        </div>
-                        <p className="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                        <small className="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                    <a href="#" className="list-group-item list-group-item-action flex-column align-items-start">
-                        <div className="d-flex w-100 justify-content-between">
-                        <h5 className="mb-1">List group item heading</h5>
-                        <small className="text-muted">3 days ago</small>
-                        </div>
-                        <p className="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                        <small className="text-muted">Donec id elit non mi porta.</small>
-                    </a>
-                    </div>
+                  <div className="list-group mt-2">
+                    {
+                      this.props.practicantes.map((practicante, i) => (
+                        <ItemPracticante key={i} practicante = { practicante }/>
+                      ))
+                    }
+                  </div>
                 </div>
             </div>
+        </div>
         </div>
       )
     }
   }
   
+  class ItemPracticante extends React.Component {
+    render() {
+    return(
+        <div>
+        <a href="#" className="list-group-item list-group-item-action flex-column align-items-start active mt-1">
+            <div className="d-flex w-100 justify-content-between">
+            <h5 className="mb-1">{ this.props.practicante.username }</h5>
+            <small>{ this.props.practicante.state }</small>
+            </div>
+            <p className="mb-1">{ this.props.practicante.university}</p>
+            <small>{ this.props.practicante.email }</small>
+        </a>
+        <div className="dropdown">
+          <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Assigments
+          </a>
+        
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            {
+              this.props.practicante.assigments.map((assigment, i) => (
+                <a key={ assigment.id }className="dropdown-item" href="#">{ assigment.activity }</a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+      )
+    }
+  }
   export default View
