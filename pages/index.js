@@ -10,7 +10,7 @@ class View extends React.Component {
       // If running on server, perform Async call
       if (typeof window === 'undefined') {
           try {
-              const res = await fetch('http://localhost:5000/api/students')
+              const res = await fetch('http://localhost:5000/api/users')
               const data = await res.json()
               const practicantes = data
 
@@ -73,6 +73,7 @@ class View extends React.Component {
             <div className="row align-items-center mt-2" >
                 <div className="col">
                   <div className="list-group mt-2">
+                    
                     {
                       this.props.practicantes.map((practicante, i) => (
                         <ItemPracticante key={i} practicante = { practicante }/>
